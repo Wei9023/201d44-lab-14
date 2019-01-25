@@ -35,9 +35,10 @@ function showCart() {
     var threetdEl = document.createElement('td');
     threetdEl.textContent = parseInt(cart.items[i].quantity);
     trEl.appendChild(threetdEl);
+    console.log(trEl);
+    table.appendChild(trEl);
   }
 
-    table.appendChild(trEl);
   // TODO: Iterate over the items in the cart
   // TODO: Create a TR
   // TODO: Create a TD for the delete link, quantity,  and the item

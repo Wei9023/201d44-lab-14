@@ -1,17 +1,30 @@
 'use strict';
 
+
+var items =[];
+var productInput = document.getElementById('item');
+var quantityInput =document.getElementById('quantity');
+
+
 // Cart constructor.
 var Cart = function(items) {
   // this.items is an array of CartItem instances.
-  this.items = items;
+  this.items = items
 };
 
 Cart.prototype.addItem = function(product, quantity) {
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+  
+  new CartItem (product, quantity);
+  
+  
+  
 };
 
 Cart.prototype.saveToLocalStorage = function() {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  localStorage.setItem('productItems', JSON.stringify(items));
+  
 };
 
 Cart.prototype.removeItem = function(item) {
@@ -19,9 +32,11 @@ Cart.prototype.removeItem = function(item) {
   // Note: You will have to decide what kind of parameter to pass in here!
 };
 
+
 var CartItem = function(product, quantity) {
   this.product = product;
   this.quantity = quantity;
+  items.push(this);
 };
 
 // Product contructor.

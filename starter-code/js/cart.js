@@ -1,20 +1,20 @@
 /* global Cart */
 'use strict';
 
+
 // Create an event listener so that when the delete link is clicked, the removeItemFromCart method is invoked.
 var table = document.getElementById('cart');
-table.addEventListener('click', removeItemFromCart);
 var cart;
 
 function loadCart() {
-  var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  var cartItems = JSON.parse(localStorage.getItem('productItems')) || [];
   cart = new Cart(cartItems);
 }
 
 // Make magic happen --- re-pull the Cart, clear out the screen and re-draw it
 function renderCart() {
   loadCart();
-  clearCart();
+  // clearCart();
   showCart();
 }
 
@@ -23,8 +23,21 @@ function clearCart() {}
 
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
-
-  // TODO: Find the table body
+  var trEl = document.createElement('tr')
+  for (var i = 0; i < cart.items.length; i++){
+    trEl = document.createElement('tr')
+    var onetdEl = document.createElement('td');
+    onetdEl.textContent = 'X';
+    trEl.appendChild(onetdEl);
+    var twotdEl = document.createElement('td');
+    twotdEl.textContent = cart.items[i].product;
+    trEl.appendChild(twotdEl);
+    var threetdEl = document.createElement('td');
+    threetdEl.textContent = parseInt(cart.items[i].quantity);
+    trEl.appendChild(threetdEl);
+    console.log(trEl);
+    table.appendChild(trEl);
+  }
 
   // TODO: Iterate over the items in the cart
   // TODO: Create a TR
@@ -43,3 +56,5 @@ function removeItemFromCart(event) {
 
 // This will initialize the page and draw the cart on screen
 renderCart();
+
+table.addEventListener('click', removeItemFromCart);
